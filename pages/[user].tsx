@@ -7,7 +7,7 @@ import { IPost } from "../lib/db/models";
 
 const Post = () => {
 	const [userPosts, setUserPosts] = useState<IPost[]>([]);
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useState<string | undefined>(undefined);
 
 	const router = useRouter();
 	const { user } = router.query;
@@ -15,18 +15,16 @@ const Post = () => {
 	const handleError = async (err: Response) => {
 		const json = await err.json();
 		setError(json.message);
-
-		return undefined;
 	};
 
 	useEffect(() => {
 		fetch(`/api/find/${user}`)
 			.then((res) => {
 				if (res.status == 200) return res.json();
-				else return handleError(res);
+				else handleError(res);
 			})
 			.then((data?: IPost[]) => {
-				if (typeof data !== "undefined") setUserPosts(data);
+				if (data) setUserPosts(data);
 			});
 	}, [user]);
 
@@ -34,7 +32,7 @@ const Post = () => {
 		return <p>Loading...</p>;
 	}
 
-	if (error !== null) {
+	if (error) {
 		return <p>Error loading user: {error}</p>;
 	}
 
@@ -52,8 +50,9 @@ const Post = () => {
 						<p>{post.description}</p>
 
 						<Image
-							width={200}
 							src={post.imageRawPath}
+							width={300}
+							height={300}
 							alt={`${post.title} is ${post.description}`}
 						/>
 					</li>
