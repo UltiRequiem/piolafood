@@ -9,6 +9,7 @@ import { IPost } from "../lib/db/models";
 import { useEffect, useState } from "react";
 
 import styles from "../styles/home.module.scss";
+import { Post } from "../containers/Post";
 
 const Home = () => {
 	const { data } = useSession();
@@ -27,36 +28,28 @@ const Home = () => {
 	};
 
 	return (
-		<>
-			<div style={style}>
-				{data && (
-					<>
-						<h1>Share it!</h1>
+		<div style={style}>
+			{data && (
+				<>
+					<h1>Share it!</h1>
+					<button className={styles.btn}>
+						<Link href="/post">Post!</Link>
+					</button>
+				</>
+			)}
 
-						<button className={styles.btn}>
-							<Link href="/post">new post</Link>
-						</button>
-					</>
-				)}
+			<h1>Latest Posts</h1>
 
-				<h1>Latest Posts</h1>
-
-				{(post &&
-					post.map((post, index) => (
-						<div key={index}>
-							<p> A dish of {post.user}</p>
-							<h2>{post.title}</h2>
-							<p>{post.description}</p>
-							<Image
-								src={post.imageRawPath}
-								height={300}
-								width={300}
-								alt={post.description}
-							/>
-						</div>
-					))) ?? <p>Loading...</p>}
-			</div>
-		</>
+			{(post && (
+				<ul>
+					{post.map((post, index) => (
+						<li key={index}>
+							<Post data={post} />
+						</li>
+					))}
+				</ul>
+			)) ?? <p>Loading...</p>}
+		</div>
 	);
 };
 

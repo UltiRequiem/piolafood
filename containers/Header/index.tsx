@@ -2,7 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from "./index.module.scss";
+import styles from "./header.module.scss";
 
 export const Header = () => {
 	const { data } = useSession();

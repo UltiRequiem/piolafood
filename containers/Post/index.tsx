@@ -2,7 +2,7 @@ import { IPost } from "lib/db/models";
 import styles from "./index.module.scss";
 import Image from "next/image";
 
-export const Post = (post: IPost) => {
+export const Post = ({ data: post }: { data: IPost }) => {
 	return (
 		<div className={styles.post}>
 			<p>A dish of {post.user}</p>
