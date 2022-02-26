@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 import styles from "./index.module.scss";
 
@@ -7,7 +8,9 @@ export const Header = () => {
 
 	return (
 		<div className={styles.header}>
-			<h1 className={styles.title}>Piolafood</h1>
+			<Link href="/" passHref>
+				<h1 className={styles.title}>Piolafood</h1>
+			</Link>
 			{data ? (
 				<>
 					<button className={styles.btn} onClick={() => signOut()}>

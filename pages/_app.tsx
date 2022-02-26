@@ -15,8 +15,8 @@ export default function App({
 }: AppProps) {
 	return (
 		<SessionProvider session={session}>
-			<Header />
 			<ReactNotifications />
+			<Header />
 			<Component {...pageProps} />
 			<Footer />
 		</SessionProvider>

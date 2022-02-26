@@ -10,8 +10,6 @@ export default async function handleRaw(
 		return response.status(405);
 	}
 
-	console.log(user);
-
 	const data = await db.allPosts();
 
 	response.status(200).json(data);

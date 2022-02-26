@@ -6,6 +6,8 @@ import { Styles } from "./types";
 
 import { Store } from "react-notifications-component";
 
+import Link from "next/link";
+
 const style: Styles = {
 	display: "flex",
 	flexDirection: "column",
@@ -57,15 +59,13 @@ const Post = () => {
 				},
 			});
 		}
-
-		console.log(dataResponse);
 	};
 
 	if (!data) {
 		return (
 			<div style={style}>
 				<p>You must login to see this page</p>
-				<a href="/login"> Home</a>
+				<Link href="/login"> Home</Link>
 			</div>
 		);
 	}
