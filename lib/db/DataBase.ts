@@ -3,7 +3,7 @@ import { Buffer } from "buffer";
 import mongoose from "mongoose";
 
 import { Post } from "./models";
-import { client } from "../images";
+import { client } from "lib/images";
 
 import type { IPost } from "./models";
 import { nanoid } from "nanoid";

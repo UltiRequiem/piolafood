@@ -1,7 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 
-import { toBase64 } from "../lib/others";
+import { toBase64 } from "lib/others";
 import { Styles } from "./types";
 
 import { Store } from "react-notifications-component";

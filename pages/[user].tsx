@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import Image from "next/image";
 
-import { IPost } from "../lib/db/models";
+import { IPost } from "lib/db/models";
 
 const Post = () => {
 	const [userPosts, setUserPosts] = useState<IPost[]>([]);
