@@ -2,8 +2,13 @@ import styles from "./footer.module.scss";
 
 export const Footer = () => {
 	return (
-		<footer className={styles.footer}>
-			Made with 💖 by <a href="https://github.com/folkip">Folkip</a>
-		</footer>
+		<div className={styles.footer}>
+			<br />
+
+			<footer>
+				Piolafood &copy; {new Date().getUTCFullYear()} - Made with 💖 &amp; ☕
+				by <a href="https://github.com/folkip">Folkip</a>
+			</footer>
+		</div>
 	);
 };
