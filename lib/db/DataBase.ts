@@ -12,9 +12,7 @@ export default class DataBase {
 	public PostModel: typeof Post;
 
 	constructor(uri: string) {
-		(async () => {
-			await mongoose.connect(uri);
-		})();
+		mongoose.connect(uri);
 
 		this.PostModel = Post;
 	}
