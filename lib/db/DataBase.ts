@@ -69,6 +69,6 @@ export default class DataBase {
 	}
 
 	async allPosts() {
-		return this.PostModel.find({});
+		return this.PostModel.find({}, "-_id -__v");
 	}
 }
