@@ -4,12 +4,13 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+
 	width: 100vw;
 	height: 10vh;
+
 	background: $bg-light;
 
 	.title {
-		display: flex;
 		font-size: 5vh;
 		margin-left: 1vw;
 		color: #fff;

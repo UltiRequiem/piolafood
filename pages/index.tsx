@@ -26,18 +26,16 @@ const Home = () => {
 
 	return (
 		<>
-			{data ? (
+			{(data && (
 				<div style={style}>
 					Hello fellow {data.user?.name ?? "new"} user!
 					<Link href="/post">Post!</Link>
 				</div>
-			) : (
-				<div style={style}>Sign in to see your profile!</div>
-			)}
+			)) ?? <div style={style}>Sign in to see your profile!</div>}
 
 			<h1>Latest Posts</h1>
 
-			{post &&
+			{(post &&
 				post.map((post, index) => (
 					<div key={index}>
 						<p> A dish of {post.user}</p>
@@ -50,7 +48,7 @@ const Home = () => {
 							alt={post.description}
 						/>
 					</div>
-				))}
+				))) ?? <p>Loading...</p>}
 		</>
 	);
 };
