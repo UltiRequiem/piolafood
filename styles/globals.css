@@ -5,8 +5,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: "Jetbrains Mono";
-  overflow-x: hidden;
-
+	overflow-x: hidden;
 }
 
 a {

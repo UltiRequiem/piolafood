@@ -34,4 +34,24 @@
 			color: #08080b;
 		}
 	}
+
+	.user {
+		display: flex;
+		align-items: center;
+		font-size: 1.2rem;
+		padding: 0.2em 1em;
+		color: #fff;
+		font-weight: 600;
+
+		.img {
+			border-radius: 50%;
+			margin-left: 5rem;
+		}
+
+		.username {
+			margin-left: 1rem;
+		}
+
+		margin-right: -2rem;
+	}
 }
