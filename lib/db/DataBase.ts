@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
 
-import { connect } from "mongoose";
+import mongoose from "mongoose";
 
 import { Post } from "./models";
 import { client } from "../images";
@@ -13,7 +13,7 @@ export default class DataBase {
 
   constructor(uri: string) {
     (async () => {
-      await connect(uri);
+      await mongoose.connect(uri);
     })();
 
     this.PostModel = Post;
@@ -24,19 +24,23 @@ export default class DataBase {
     description,
     tags,
     imageData,
+    imageDataFileType,
     user,
   }: {
     title: string;
     description: string;
     tags: string[];
     imageData: string;
+    imageDataFileType: string;
     user: string;
   }) {
     const slug = nanoid();
 
     const {
       data: { url, direct_url },
-    } = await client.uploadFile(Buffer.from(imageData, "base64"));
+    } = await client.uploadFile(Buffer.from(imageData, "base64"), {
+      extension: imageDataFileType,
+    });
 
     const post: IPost & { slug: string } = {
       title,
