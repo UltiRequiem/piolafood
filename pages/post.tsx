@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { Button } from "antd";
 
 import { toBase64 } from "../lib/others";
+import { Styles } from "./types";
 
-const style = {
+const style: Styles = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -16,9 +17,8 @@ const Post = () => {
   const { data } = useSession();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data) => {
-    /** @type {File} */
-    const image = data.imageFood[0];
+  const onSubmit = async (data: { imageFood: File[], title: string, description: string }) => {
+    const image: File = data.imageFood[0];
 
     const fileType = image.type.split("/")[1];
 
@@ -49,7 +49,7 @@ const Post = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} style={style}>
+    <form onSubmit={handleSubmit(onSubmit as any)} style={style}>
       <label>
         Title
         <input required {...register("title")} />

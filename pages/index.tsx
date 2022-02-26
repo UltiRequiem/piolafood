@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react";
 
 import { Button } from "antd";
+import { Styles } from "./types.d";
 
 const Home = () => {
   const { data: session } = useSession();
 
-  const style = {
+  const style: Styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
