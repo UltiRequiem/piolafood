@@ -38,9 +38,12 @@ export default class DataBase {
 
     const {
       data: { url, direct_url },
-    } = await client.uploadFile(Buffer.from(imageData, "base64"), {
-      extension: imageDataFileType,
-    });
+    } = await client.uploadFile(
+      Buffer.from(imageData.replace(/^data:image\/\w+;base64,/, ""), "base64"),
+      {
+        extension: imageDataFileType,
+      }
+    );
 
     const post: IPost & { slug: string } = {
       title,
