@@ -18,6 +18,7 @@ export default function App({
         <Layout.Header style={{ backgroundColor: "gray" }}>
           <Header />
         </Layout.Header>
+
         <Layout.Content>
           <Component {...pageProps} />
         </Layout.Content>

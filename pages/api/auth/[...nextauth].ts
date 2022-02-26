@@ -16,7 +16,8 @@ const config = {
 console.log(config);
 
 export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
+  // adapter: MongoDBAdapter(clientPromise),
+  secret: process.env.SECRET,
   providers: [
     GithubProvider({
       clientId: config.GITHUB_ID,
