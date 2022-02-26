@@ -1,7 +1,11 @@
 import { SessionProvider } from "next-auth/react";
+import { Layout } from "antd";
+
+import { Header, Footer } from "../containers";
 
 import type { AppProps } from "next/app";
 
+import "antd/dist/antd.css";
 import "../styles/globals.css";
 
 export default function App({
@@ -10,7 +14,18 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Layout>
+        <Layout.Header style={{ backgroundColor: "gray" }}>
+          <Header />
+        </Layout.Header>
+        <Layout.Content>
+          <Component {...pageProps} />
+        </Layout.Content>
+
+        <Layout.Footer>
+          <Footer />
+        </Layout.Footer>
+      </Layout>
     </SessionProvider>
   );
 }

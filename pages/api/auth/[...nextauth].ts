@@ -1,5 +1,8 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+
+import clientPromise from "../../../lib/mongoAdapter";
 
 const isDev = process.env.ENV === "DEV";
 
@@ -13,6 +16,7 @@ const config = {
 console.log(config);
 
 export default NextAuth({
+  adapter: MongoDBAdapter(clientPromise),
   providers: [
     GithubProvider({
       clientId: config.GITHUB_ID,

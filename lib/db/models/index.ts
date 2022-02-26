@@ -1,1 +1,1 @@
-export { default as Post, IPost } from "./Post";
+export * from "./Post";
