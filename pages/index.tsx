@@ -38,8 +38,7 @@ const Home = () => {
 
 			<h1>Latest Posts</h1>
 
-			{/* eslint-disable-next-line react/jsx-key */}
-			{post && post.map((post) => <Post data={post} />)}
+			{post && post.map((post, index) => <Post key={index} data={post} />)}
 		</div>
 	);
 };
