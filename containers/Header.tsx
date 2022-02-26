@@ -10,7 +10,11 @@ export const Header = () => {
     justifyContent: "flex-end",
   };
 
-  if (session) {
+  if (
+    typeof session !== "undefined" &&
+    session !== null &&
+    typeof session.user !== "undefined"
+  ) {
     return (
       <div style={styles}>
         <Button onClick={() => signOut()}>Sign out</Button>
