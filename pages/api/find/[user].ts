@@ -10,7 +10,14 @@ export default async function handleRaw(
 		return response.status(405);
 	}
 
-	const data = await db.findPostByUser(user as string);
+	let data;
+
+	try {
+		data = await db.findPostByUser(user as string);
+	} catch (error) {
+		response.status(400).json({ message: error });
+		return;
+	}
 
 	response.status(200).json(data);
 }

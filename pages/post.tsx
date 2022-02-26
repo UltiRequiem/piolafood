@@ -1,9 +1,10 @@
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { Button, notification } from "antd";
 
 import { toBase64 } from "../lib/others";
 import { Styles } from "./types";
+
+import { Store } from "react-notifications-component";
 
 const style: Styles = {
 	display: "flex",
@@ -43,10 +44,17 @@ const Post = () => {
 		if (dataResponse.imagePath) {
 			await navigator.clipboard.writeText(dataResponse.imagePath);
 
-			notification.success({
-				message: "Copied to clipboard",
-				description: "Image path copied to clipboard",
-				placement: "bottomRight",
+			Store.addNotification({
+				title: "Copied to clipboard",
+				message: "Image path copied to clipboard",
+				insert: "top",
+				container: "top-right",
+				animationIn: ["animate__animated", "animate__fadeIn"],
+				animationOut: ["animate__animated", "animate__fadeOut"],
+				dismiss: {
+					duration: 5000,
+					onScreen: true,
+				},
 			});
 		}
 
@@ -57,7 +65,7 @@ const Post = () => {
 		return (
 			<div style={style}>
 				<p>You must login to see this page</p>
-				<Button href="/login"> Home</Button>
+				<a href="/login"> Home</a>
 			</div>
 		);
 	}

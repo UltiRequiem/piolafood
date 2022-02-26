@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
-import { Button } from "antd";
 import { Styles } from "./types.d";
 
 const Home = () => {
@@ -21,7 +21,7 @@ const Home = () => {
 	return (
 		<div style={style}>
 			Hello fellow new user!
-			<Button href="/post">Post!</Button>
+			<Link href="/post">Post!</Link>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import { TixteClient } from "@ultirequiem/tixte";
 
-const OUR_DOMAINS = ["likes.cash", "wants.solutions", "is-from.space"];
+const OUR_DOMAINS = ["wants.solutions", "is-from.space"];
 
 if (!process.env.TIXTE_CLIENT_KEY) {
 	throw new Error("TIXTE_CLIENT_KEY is not set");

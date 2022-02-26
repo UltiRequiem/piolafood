@@ -64,8 +64,14 @@ export default class DataBase {
 		return this.PostModel.findOne({ slug }, "-_id -__v");
 	}
 
-	async findPostByUser(user: string) {
-		return this.PostModel.find({ user }, "-_id -__v");
+	findPostByUser(user: string): Promise<IPost[]> {
+		return new Promise((resolve, reject) => {
+			this.PostModel.find({ user }, "-_id -__v")
+				.then(resolve)
+				.catch((err: Error) => {
+					reject(err.message);
+				});
+		});
 	}
 
 	async allPosts() {
