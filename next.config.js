@@ -2,7 +2,11 @@
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ["piolafood.wants.solutions", "avatars.githubusercontent.com"],
+		domains: [
+			"piolafood.wants.solutions",
+			"avatars.githubusercontent.com",
+			"piolafood.is-from.space",
+		],
 	},
 };
 
