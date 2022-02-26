@@ -25,7 +25,7 @@ const Home = () => {
 	};
 
 	return (
-		<>
+		<div style={style}>
 			{(data && (
 				<div style={style}>
 					Hello fellow {data.user?.name ?? "new"} user!
@@ -35,21 +35,31 @@ const Home = () => {
 
 			<h1>Latest Posts</h1>
 
-			{(post &&
-				post.map((post, index) => (
-					<div key={index}>
-						<p> A dish of {post.user}</p>
-						<h2>{post.title}</h2>
-						<p>{post.description}</p>
-						<Image
-							src={post.imageRawPath}
-							height={300}
-							width={300}
-							alt={post.description}
-						/>
-					</div>
-				))) ?? <p>Loading...</p>}
-		</>
+			{(post && (
+				<ul>
+					{post.map((post, index) => (
+						<div
+							style={{
+								backgroundColor: "gray",
+								margin: "10px",
+								padding: "10px",
+							}}
+							key={index}
+						>
+							<p> A dish of {post.user}</p>
+							<h2>{post.title}</h2>
+							<p>{post.description}</p>
+							<Image
+								src={post.imageRawPath}
+								height={300}
+								width={300}
+								alt={post.description}
+							/>
+						</div>
+					))}
+				</ul>
+			)) ?? <p>Loading...</p>}
+		</div>
 	);
 };
 
