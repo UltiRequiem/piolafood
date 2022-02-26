@@ -14,11 +14,21 @@ export default function App({
 	pageProps: { session, ...pageProps },
 }: AppProps) {
 	return (
-		<SessionProvider session={session}>
-			<ReactNotifications />
-			<Header />
-			<Component {...pageProps} />
-			<Footer />
-		</SessionProvider>
+		<>
+			<SessionProvider session={session}>
+				<div
+					style={{
+						width: "100vw",
+						height: "100%",
+						color: "#D8E0FF",
+					}}
+				>
+					<ReactNotifications />
+					<Header />
+					<Component {...pageProps} />
+					<Footer />
+				</div>
+			</SessionProvider>
+		</>
 	);
 }

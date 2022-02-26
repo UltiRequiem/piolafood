@@ -1,0 +1,16 @@
+.btn {
+	font-size: 1.2rem;
+	font-weight: 200;
+	padding: 0.2em 1em;
+	border: 2px solid #fff;
+	cursor: pointer;
+	color: #fff;
+	font-weight: 600;
+	background: transparent;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		background: #fff;
+		color: #08080b;
+	}
+}

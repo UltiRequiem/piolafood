@@ -8,6 +8,8 @@ import { Styles } from "./types.d";
 import { IPost } from "../lib/db/models";
 import { useEffect, useState } from "react";
 
+import styles from "../styles/home.module.scss";
+
 const Home = () => {
 	const { data } = useSession();
 	const [post, setPost] = useState<IPost[]>();
@@ -26,29 +28,34 @@ const Home = () => {
 
 	return (
 		<>
-			{(data && (
-				<div style={style}>
-					Hello fellow {data.user?.name ?? "new"} user!
-					<Link href="/post">Post!</Link>
-				</div>
-			)) ?? <div style={style}>Sign in to see your profile!</div>}
+			<div style={style}>
+				{data && (
+					<>
+						<h1>Share it!</h1>
 
-			<h1>Latest Posts</h1>
+						<button className={styles.btn}>
+							<Link href="/post">new post</Link>
+						</button>
+					</>
+				)}
 
-			{(post &&
-				post.map((post, index) => (
-					<div key={index}>
-						<p> A dish of {post.user}</p>
-						<h2>{post.title}</h2>
-						<p>{post.description}</p>
-						<Image
-							src={post.imageRawPath}
-							height={300}
-							width={300}
-							alt={post.description}
-						/>
-					</div>
-				))) ?? <p>Loading...</p>}
+				<h1>Latest Posts</h1>
+
+				{(post &&
+					post.map((post, index) => (
+						<div key={index}>
+							<p> A dish of {post.user}</p>
+							<h2>{post.title}</h2>
+							<p>{post.description}</p>
+							<Image
+								src={post.imageRawPath}
+								height={300}
+								width={300}
+								alt={post.description}
+							/>
+						</div>
+					))) ?? <p>Loading...</p>}
+			</div>
 		</>
 	);
 };
