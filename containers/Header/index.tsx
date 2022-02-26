@@ -11,7 +11,9 @@ export const Header = () => {
 
 	return (
 		<div className={styles.header}>
-			<h1 className={styles.title}>Piolafood</h1>
+			<Link href="/" passHref>
+				<h1 className={styles.title}>Piolafood</h1>
+			</Link>
 			{data ? (
 				<>
 					<div className={styles.user}>
