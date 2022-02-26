@@ -1,0 +1,53 @@
+.post {
+	border-radius: 10%;
+	background-color: #edfffd;
+	color: #151616;
+	padding: 2em;
+	width: 30%;
+	height: 25%;
+	margin: 1em;
+
+	.author {
+		margin-top: 0px;
+		color: #006a81;
+
+		.user {
+			text-decoration: underline;
+		}
+	}
+
+	.img_box {
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+
+		.title {
+			font-size: 2em;
+			font-weight: 600;
+			margin-bottom: 0.1em;
+			text-decoration: underline;
+		}
+
+		.description {
+			font-size: 1em;
+			font-weight: 200;
+			margin-bottom: 0.5em;
+		}
+
+		.tag {
+			font-size: 1em;
+			font-weight: 200;
+			font-style: italic;
+			color: #3d3d3d;
+		}
+
+		.img {
+			border-radius: 2%;
+			float: left;
+		}
+	}
+
+	.end {
+		margin-bottom: -0.1em;
+	}
+}

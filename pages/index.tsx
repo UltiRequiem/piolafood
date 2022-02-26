@@ -40,15 +40,8 @@ const Home = () => {
 
 			<h1>Latest Posts</h1>
 
-			{(post && (
-				<ul>
-					{post.map((post, index) => (
-						<li key={index}>
-							<Post data={post} />
-						</li>
-					))}
-				</ul>
-			)) ?? <p>Loading...</p>}
+			{/* eslint-disable-next-line react/jsx-key */}
+			{post && post.map((post) => <Post data={post} />)}
 		</div>
 	);
 };
