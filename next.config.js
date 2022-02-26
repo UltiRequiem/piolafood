@@ -5,6 +5,7 @@ const nextConfig = {
 		domains: [
 			"piolafood.wants.solutions",
 			"avatars.githubusercontent.com",
+			"lh3.googleusercontent.com",
 			"piolafood.is-from.space",
 		],
 	},
