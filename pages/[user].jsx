@@ -10,17 +10,12 @@ const Post = () => {
 	const router = useRouter();
 	const { user } = router.query;
 
-	const { data: session } = useSession();
 
 	useEffect(() => {
 		fetch(`/api/find/${user}`)
 			.then((res) => res.json())
 			.then((data) => setUserPosts(data));
 	}, [user]);
-
-	if (!session) {
-		return <p>Sign in to see your profile!</p>;
-	}
 
 	if (!userPosts) {
 		return <p>Loading...</p>;

@@ -1,32 +1,26 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Avatar } from "antd";
 
-import { Avatar, Button } from "antd";
+import { Button } from "../components";
 
 export const Header = () => {
-  const { data: session } = useSession();
+	const { data } = useSession();
 
-  const styles = {
-    display: "flex",
-    justifyContent: "flex-end",
-  };
-
-  if (
-    typeof session !== "undefined" &&
-    session !== null &&
-    typeof session.user !== "undefined"
-  ) {
-    return (
-      <div style={styles}>
-        <Button onClick={() => signOut()}>Sign out</Button>
-        Hello {session.user.name}!
-        <Avatar src={session.user.image} />
-      </div>
-    );
-  }
-
-  return (
-    <div style={styles}>
-      <Button onClick={() => signIn()}>Sign in</Button>
-    </div>
-  );
+	return (
+		<div className="flex flex-row-reverse justify-between h-full">
+			{data ? (
+				<>
+					<Button type="button" onClick={() => signOut()}>
+						Sign out
+					</Button>
+					Hello {data?.user?.name}!
+					<a href={`/${data?.user?.email}`}>
+						<Avatar src={data?.user?.image} />
+					</a>
+				</>
+			) : (
+				<Button onClick={() => signIn()}>Sign in</Button>
+			)}
+		</div>
+	);
 };
