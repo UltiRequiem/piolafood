@@ -7,8 +7,6 @@ import styles from "./header.module.scss";
 export const Header = () => {
 	const { data } = useSession();
 
-	console.log(data);
-
 	return (
 		<div className={styles.header}>
 			<Link href="/" passHref>

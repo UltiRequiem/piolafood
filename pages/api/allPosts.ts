@@ -1,9 +1,9 @@
 import type { NextApiResponse, NextApiRequest } from "next";
 
-import { db } from "../../lib/db";
+import { db } from "lib/db";
 
 export default async function handleRaw(
-	{ method, query: { user } }: NextApiRequest,
+	{ method }: NextApiRequest,
 	response: NextApiResponse
 ) {
 	if (method !== "GET") {

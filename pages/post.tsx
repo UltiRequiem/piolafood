@@ -1,12 +1,13 @@
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 
-import { toBase64 } from "../lib/others";
-import { Styles } from "./types";
-
 import { Store } from "react-notifications-component";
 
 import Link from "next/link";
+import { useRouter } from "next/router";
+
+import { toBase64 } from "lib/others";
+import { Styles } from "./types";
 
 const style: Styles = {
 	display: "flex",
@@ -18,14 +19,15 @@ const style: Styles = {
 
 const Post = () => {
 	const { data } = useSession();
+	const router = useRouter();
 	const { register, handleSubmit } = useForm();
 
-	const onSubmit = async (data: {
+	const onSubmit = async (formData: {
 		imageFood: File[];
 		title: string;
 		description: string;
 	}) => {
-		const image: File = data.imageFood[0];
+		const image: File = formData.imageFood[0];
 
 		const fileType = image.type.split("/")[1];
 
@@ -34,8 +36,8 @@ const Post = () => {
 		const response = await fetch("/api/post", {
 			method: "POST",
 			body: JSON.stringify({
-				title: data.title,
-				description: data.description,
+				title: formData.title,
+				description: formData.description,
 				imageData,
 				imageDataFileType: fileType,
 			}),
@@ -46,18 +48,20 @@ const Post = () => {
 		if (dataResponse.imagePath) {
 			await navigator.clipboard.writeText(dataResponse.imagePath);
 
-			Store.addNotification({
-				title: "Copied to clipboard",
-				message: "Image path copied to clipboard",
-				insert: "top",
-				container: "top-right",
-				animationIn: ["animate__animated", "animate__fadeIn"],
-				animationOut: ["animate__animated", "animate__fadeOut"],
-				dismiss: {
-					duration: 5000,
-					onScreen: true,
-				},
-			});
+			// Store.addNotification({
+			// 	title: "Copied to clipboard",
+			// 	message: "Image path copied to clipboard",
+			// 	insert: "top",
+			// 	container: "top-right",
+			// 	// animationIn: ["animate__animated", "animate__fadeIn"],
+			// 	// animationOut: ["animate__animated", "animate__fadeOut"],
+			// 	// dismiss: {
+			// 		// duration: 5000,
+			// 		// onScreen: true,
+			// 	// },
+			// });
+
+			router.push(`/${data?.user?.email}`);
 		}
 	};
 

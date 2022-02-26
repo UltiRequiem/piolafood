@@ -1,15 +1,13 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import Image from "next/image";
-
 import { Styles } from "./types.d";
 
-import { IPost } from "../lib/db/models";
+import { IPost } from "lib/db/models";
 import { useEffect, useState } from "react";
 
-import styles from "../styles/home.module.scss";
-import { Post } from "../containers/Post";
+import styles from "styles/home.module.scss";
+import { Post } from "containers/Post";
 
 const Home = () => {
 	const { data } = useSession();
