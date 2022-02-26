@@ -9,5 +9,5 @@ if (!process.env.TIXTE_CLIENT_KEY) {
 }
 
 export const client = new TixteClient(process.env.TIXTE_CLIENT_KEY, {
-  defaultURL: `https://piolafood.${randomItem(OUR_DOMAINS)}`,
+  defaultURL: `piolafood.${randomItem(OUR_DOMAINS)}`,
 });

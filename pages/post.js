@@ -17,14 +17,26 @@ const Post = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     /** @type {File} */
     const image = data.imageFood[0];
 
-    const imgData = await toBase64(image);
+    const fileType = image.type.split("/")[1];
 
-    console.log(imgData);
+    const imageData = await toBase64(image);
+
+    const response = await fetch("/api/post", {
+      method: "POST",
+      body: JSON.stringify({
+        title: data.title,
+        description: data.description,
+        imageData,
+        imageDataFileType: fileType,
+      }),
+    });
+
+    const dataResponse = await response.json();
+
+    console.log(dataResponse);
   };
 
   if (!data) {
@@ -45,7 +57,7 @@ const Post = () => {
 
       <label>
         Description
-        <input {...register("description")} />
+        <input required {...register("description")} />
       </label>
 
       <label>
