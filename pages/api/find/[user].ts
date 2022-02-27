@@ -1,6 +1,6 @@
 import type { NextApiResponse, NextApiRequest } from "next";
 
-import { db } from "lib/db";
+import { database } from "lib/db";
 
 export default async function handleRaw(
 	{ method, query: { user } }: NextApiRequest,
@@ -13,7 +13,8 @@ export default async function handleRaw(
 	let data;
 
 	try {
-		data = await db.findPostByUser(user as string);
+		data = await database.findPostByUser(user as string);
+		data = data.reverse();
 	} catch (error) {
 		response.status(400).json({ message: error });
 		return;

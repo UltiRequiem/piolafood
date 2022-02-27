@@ -2,11 +2,11 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
-const isDev = process.env.ENV === "DEV";
+const isDevelopment = process.env.ENV === "DEV";
 
 const config = {
-	GITHUB_ID: isDev ? process.env.GITHUB_ID_DEV : process.env.GITHUB_ID,
-	GITHUB_SECRET: isDev
+	GITHUB_ID: isDevelopment ? process.env.GITHUB_ID_DEV : process.env.GITHUB_ID,
+	GITHUB_SECRET: isDevelopment
 		? process.env.GITHUB_SECRET_DEV
 		: process.env.GITHUB_SECRET,
 };

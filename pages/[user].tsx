@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import Image from "next/image";
+import type { IPost } from "lib/db/models";
 
-import { IPost } from "lib/db/models";
+import type { NextPage } from "next";
 
-const Post = () => {
+import { Post } from "containers/Post";
+
+const PostPage: NextPage = () => {
 	const [userPosts, setUserPosts] = useState<IPost[]>([]);
-	const [error, setError] = useState<string | undefined>(undefined);
+	const [error, setError] = useState<string | undefined>();
 
 	const router = useRouter();
 	const { user } = router.query;
 
-	const handleError = async (err: Response) => {
-		const json = await err.json();
+	const handleError = async (error_: Response) => {
+		const json = await error_.json();
 		setError(json.message);
 	};
 
 	useEffect(() => {
 		fetch(`/api/find/${user}`)
-			.then((res) => {
-				if (res.status == 200) return res.json();
-				else handleError(res);
+			.then((response) => {
+				if (response.status == 200) return response.json();
+				else handleError(response);
 			})
 			.then((data?: IPost[]) => {
 				if (data) setUserPosts(data);
@@ -45,21 +47,11 @@ const Post = () => {
 			<h1>{user} posts</h1>
 			<ul>
 				{userPosts.map((post, index) => (
-					<li key={index}>
-						<h2>{post.title}</h2>
-						<p>{post.description}</p>
-
-						<Image
-							src={post.imageRawPath}
-							width={300}
-							height={300}
-							alt={`${post.title} is ${post.description}`}
-						/>
-					</li>
+					<Post key={index} data={post} />
 				))}
 			</ul>
 		</div>
 	);
 };
 
-export default Post;
+export default PostPage;

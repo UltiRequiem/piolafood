@@ -1,10 +1,12 @@
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 
-import { Store } from "react-notifications-component";
+// import { Store } from "react-notifications-component";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
+
+import type { NextPage } from "next";
 
 import { toBase64 } from "lib/others";
 import { Styles } from "./types";
@@ -17,7 +19,7 @@ const style: Styles = {
 	height: "100vh",
 };
 
-const Post = () => {
+const Post: NextPage = () => {
 	const { data } = useSession();
 	const router = useRouter();
 	const { register, handleSubmit } = useForm();

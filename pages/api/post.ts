@@ -1,42 +1,42 @@
 import { getSession } from "next-auth/react";
 
-import { db } from "lib/db";
+import { database } from "lib/db";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse
+	request: NextApiRequest,
+	response: NextApiResponse
 ) {
-	if (req.method !== "POST") {
-		return res.status(405).end("Method not allowed");
+	if (request.method !== "POST") {
+		return response.status(405).end("Method not allowed");
 	}
 
-	const session = await getSession({ req });
+	const session = await getSession({ req: request });
 
 	if (!session) {
-		return res.send({
+		return response.send({
 			error: "You must be sign in to view the protected content on this page.",
 		});
 	}
 
-	if (!req.body) {
-		return res.status(400).send({
+	if (!request.body) {
+		return response.status(400).send({
 			error: "You must provide data.",
 		});
 	}
 
-	const body = JSON.parse(req.body);
+	const body = JSON.parse(request.body);
 
 	const { title, description, imageData, imageDataFileType } = body;
 
 	if (!title || !description || !imageData || !imageDataFileType) {
-		return res.status(400).send({
+		return response.status(400).send({
 			error: "You must provide title, description and imageData.",
 		});
 	}
 
-	const post = await db.newPost({
+	const post = await database.post({
 		title,
 		description,
 		imageData,
@@ -45,5 +45,5 @@ export default async function handler(
 		tags: ["food"],
 	});
 
-	res.send(post);
+	response.send(post);
 }

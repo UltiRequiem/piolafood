@@ -3,19 +3,21 @@ import Link from "next/link";
 
 import { Styles } from "./types.d";
 
-import { IPost } from "lib/db/models";
+import type { IPost } from "lib/db/models";
 import { useEffect, useState } from "react";
 
 import styles from "styles/home.module.scss";
 import { Post } from "containers/Post";
 
-const Home = () => {
+import type { NextPage } from "next";
+
+const Home: NextPage = () => {
 	const { data } = useSession();
 	const [post, setPost] = useState<IPost[]>();
 
 	useEffect(() => {
-		fetch("/api/allPosts")
-			.then((res) => res.json())
+		fetch("/api/all-posts")
+			.then((response) => response.json())
 			.then((data) => setPost(data));
 	}, []);
 

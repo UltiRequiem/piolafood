@@ -11,7 +11,7 @@ import { ReactNotifications } from "react-notifications-component";
 
 export default function App({
 	Component,
-	pageProps: { session, ...pageProps },
+	pageProps: { session, ...pageProperties },
 }: AppProps) {
 	return (
 		<>
@@ -25,7 +25,7 @@ export default function App({
 				>
 					<ReactNotifications />
 					<Header />
-					<Component {...pageProps} />
+					<Component {...pageProperties} />
 					<Footer />
 				</div>
 			</SessionProvider>

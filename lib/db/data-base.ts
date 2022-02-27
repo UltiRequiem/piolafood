@@ -1,4 +1,4 @@
-import { Buffer } from "buffer";
+import { Buffer } from "node:buffer";
 
 import mongoose from "mongoose";
 
@@ -13,11 +13,10 @@ export default class DataBase {
 
 	constructor(uri: string) {
 		mongoose.connect(uri);
-
 		this.PostModel = Post;
 	}
 
-	async newPost({
+	async post({
 		title,
 		description,
 		tags,
@@ -55,24 +54,18 @@ export default class DataBase {
 
 		await new this.PostModel(post).save();
 
-		return this.findPostBySlug(slug);
+		return this.findPostBySlug(slug) as Promise<IPost>;
 	}
 
-	async findPostBySlug(slug: string) {
+	async findPostBySlug(slug: string): Promise<IPost | null> {
 		return this.PostModel.findOne({ slug }, "-_id -__v");
 	}
 
-	findPostByUser(user: string): Promise<IPost[]> {
-		return new Promise((resolve, reject) => {
-			this.PostModel.find({ user }, "-_id -__v")
-				.then(resolve)
-				.catch((err: Error) => {
-					reject(err.message);
-				});
-		});
+	async findPostByUser(user: string): Promise<IPost[]> {
+		return this.PostModel.find({ user }, "-_id -__v");
 	}
 
-	async allPosts() {
+	async allPosts(): Promise<IPost[]> {
 		return this.PostModel.find({}, "-_id -__v");
 	}
 }
