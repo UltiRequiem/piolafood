@@ -13,8 +13,7 @@ export default async function handleRaw(
 	let data;
 
 	try {
-		data = await database.findPostByUser(user as string);
-		data = data.reverse();
+		data = await database.findPostByUser(user as string, { reverse: true });
 	} catch (error) {
 		response.status(400).json({ message: error });
 		return;

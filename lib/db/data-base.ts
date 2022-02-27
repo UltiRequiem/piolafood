@@ -8,6 +8,10 @@ import { client } from "lib/images";
 import type { IPost } from "./models";
 import { nanoid } from "nanoid";
 
+export interface SortOptions {
+	reverse?: boolean;
+}
+
 export default class DataBase {
 	public PostModel: typeof Post;
 
@@ -61,11 +65,23 @@ export default class DataBase {
 		return this.PostModel.findOne({ slug }, "-_id -__v");
 	}
 
-	async findPostByUser(user: string): Promise<IPost[]> {
-		return this.PostModel.find({ user }, "-_id -__v");
+	async findPostByUser(user: string, options?: SortOptions): Promise<IPost[]> {
+		const data = await this.PostModel.find({ user }, "-_id -__v");
+
+		if (options?.reverse) {
+			data.reverse();
+		}
+
+		return data;
 	}
 
-	async allPosts(): Promise<IPost[]> {
-		return this.PostModel.find({}, "-_id -__v");
+	async allPosts(options?: SortOptions): Promise<IPost[]> {
+		const data = await this.PostModel.find({}, "-_id -__v");
+
+		if (options?.reverse) {
+			data.reverse();
+		}
+
+		return data;
 	}
 }
