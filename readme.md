@@ -15,7 +15,7 @@ Sadly we didn't win, but it was a good experience!
 
 - Next.js
 
-- Next Auth
+- Next Auth (Google and Github)
 
 - Sass
 
