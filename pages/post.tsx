@@ -71,7 +71,7 @@ const Post: NextPage = () => {
 		return (
 			<div style={style}>
 				<p>You must login to see this page</p>
-				<Link href="/login"> Home</Link>
+				<Link href="/login">Home</Link>
 			</div>
 		);
 	}

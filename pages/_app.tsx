@@ -1,6 +1,6 @@
 import { SessionProvider } from "next-auth/react";
 
-import { Header, Footer } from "containers";
+import { Footer, Header } from "containers";
 
 import type { AppProps } from "next/app";
 
